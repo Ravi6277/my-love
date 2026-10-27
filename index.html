@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0a0c" />
+  <title>Sirf Tum — A Sealed Letter ❤</title>
+  <meta name="description" content="A sealed letter of parchment, marble and thorns — made for her." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🕯️%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..700&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Pirata+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================== PRELOADER ===================== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__half top"></div>
+    <div class="preloader__half bottom"></div>
+    <div class="preloader__core">
+      <p class="preloader__mono">✦ sealed · for her only · mmxxvi ✦</p>
+      <h1 class="preloader__title">Sirf <span>Tum</span></h1>
+      <p class="preloader__label">gathering the archive of us</p>
+      <div class="preloader__bar"><i id="loadFill"></i></div>
+      <span class="preloader__num" id="loadNum">0</span>
+    </div>
+  </div>
+
+  <!-- ===================== INTRO ===================== -->
+  <div class="intro" id="intro">
+    <div class="intro__inner">
+      <p class="intro__eyebrow">no. 001 — sealed · mmxxvi</p>
+      <h1 class="intro__title">For You</h1>
+      <p class="intro__sub">A letter of marble, parchment and thorns. Scroll slowly — every picture, every word, is yours.</p>
+      <button class="btn-enter sealed magnetic" id="enterBtn">
+        <span class="seal" aria-hidden="true"><span>S</span></span>
+        <span class="btn-enter__txt">break the seal</span>
+      </button>
+      <p class="intro__hint">♪ sirf tum will play the moment you break it</p>
+    </div>
+  </div>
+
+  <!-- ===================== CURSOR ===================== -->
+  <div class="cursor" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- background layers -->
+  <canvas id="hearts" class="hearts-canvas" aria-hidden="true"></canvas>
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="vp-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="scroll-progress" aria-hidden="true"><i id="scrollBar"></i></div>
+
+  <!-- ===================== DOT NAV ===================== -->
+  <nav class="dots" id="dots" aria-label="Sections">
+    <a href="#hero" data-label="hello"></a>
+    <a href="#gratitude" data-label="thank you"></a>
+    <a href="#us" data-label="us"></a>
+    <a href="#gallery" data-label="you"></a>
+    <a href="#portraits" data-label="gallery"></a>
+    <a href="#moments" data-label="moments"></a>
+    <a href="#letters" data-label="letters"></a>
+    <a href="#finale" data-label="always"></a>
+  </nav>
+
+  <!-- ===================== MUSIC TICKET ===================== -->
+  <div class="music" id="musicBar">
+    <button class="music__toggle magnetic" id="musicToggle" aria-label="Play or pause music">
+      <svg class="ic-play" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+      <svg class="ic-pause" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+    </button>
+    <div class="music__meta">
+      <div class="music__title">Sirf Tum <em>— darshan raval</em></div>
+      <div class="music__track"><i id="musicFill"></i></div>
+    </div>
+    <span class="music__time" id="musicTime">0:00</span>
+  </div>
+
+  <main id="main" class="main is-locked">
+
+    <!-- ===================== HERO — neoclassical poster ===================== -->
+    <section class="hero tex-parch" id="hero">
+      <div class="hero__sun" aria-hidden="true"></div>
+      <div class="hero__orbit" aria-hidden="true"></div>
+      <div class="hero__brush" aria-hidden="true"></div>
+      <span class="hero__col col-l" aria-hidden="true"></span>
+      <span class="hero__col col-r" aria-hidden="true"></span>
+
+      <div class="hero__stage" id="heroStage">
+        <figure class="float-card fc-1 arch" data-rot="-6" data-depth="1.7">
+          <span class="tape" aria-hidden="true"></span>
+          <img src="assets/img/photo-03.jpg" alt="Her smile" />
+          <figcaption>plate i — her smile</figcaption>
+        </figure>
+        <figure class="float-card fc-2" data-rot="7" data-depth="1">
+          <span class="tape" aria-hidden="true"></span>
+          <img src="assets/img/us-06.jpg" alt="Us" />
+          <figcaption>plate ii — us</figcaption>
+        </figure>
+        <figure class="float-card fc-3 arch" data-rot="5" data-depth="1.4">
+          <img src="assets/img/photo-02.jpg" alt="Her close-up" />
+          <figcaption>plate iii — her</figcaption>
+        </figure>
+        <figure class="float-card fc-4" data-rot="-5" data-depth="1.8">
+          <span class="tape" aria-hidden="true"></span>
+          <img src="assets/img/us-11.jpg" alt="Her" />
+          <figcaption>plate iv — calm</figcaption>
+        </figure>
+      </div>
+
+      <div class="hero__copy">
+        <p class="eyebrow">✦ &nbsp;for the girl who stayed&nbsp; ✦</p>
+        <h1 class="hero__title" id="heroTitle">
+          <span class="line roman" data-split="words">You made my</span>
+          <span class="line ital" data-split="words">dark days soft</span>
+          <span class="line gothic" data-split="words">again</span>
+        </h1>
+        <div class="orn-rule" aria-hidden="true"><i></i>✦<i></i></div>
+        <p class="hero__sub">Scroll, and I'll tell you everything I've never said out loud.</p>
+        <div class="scroll-cue" aria-hidden="true">
+          <span class="mouse"><i></i></span>
+          <span>unroll</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== MARQUEE ===================== -->
+    <div class="marquee" id="marquee" aria-hidden="true">
+      <div class="marquee__track" id="marqueeTrack">
+        <span>sirf tum</span><i>✦</i><span>my peace</span><i>✦</i><span>my home</span><i>✦</i><span>my favourite notification</span><i>✦</i><span>sealed with love</span><i>✦</i><span>mmxxvi</span><i>✦</i>
+        <span>sirf tum</span><i>✦</i><span>my peace</span><i>✦</i><span>my home</span><i>✦</i><span>my favourite notification</span><i>✦</i><span>sealed with love</span><i>✦</i><span>mmxxvi</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- ===================== GRATITUDE — restricted files ===================== -->
+    <section class="section gratitude tex-dark" id="gratitude">
+      <header class="sec-head">
+        <p class="eyebrow reveal">chapter one</p>
+        <h2 class="sec-title black reveal">Thank you<span class="dot">.</span></h2>
+        <div class="orn-rule reveal" aria-hidden="true"><i></i>✦<i></i></div>
+        <p class="sec-sub reveal">For the three things I will never be able to repay.</p>
+      </header>
+
+      <div class="notes">
+        <article class="note reveal" data-roman="I" style="--d:.05s">
+          <span class="note__tab">file 01 — restricted</span>
+          <span class="note__num">01</span>
+          <h3>For my tough times</h3>
+          <p>When everything felt like it was falling apart, you didn't walk away — you sat with me in the mess. You held my hand and told me I'd be okay, and somehow, because it was you saying it, I believed it.</p>
+          <div class="note__foot">
+            <div class="barcode" aria-hidden="true"></div>
+            <span class="code">0 24563 84926 · 17</span>
+          </div>
+        </article>
+        <article class="note reveal" data-roman="II" style="--d:.15s">
+          <span class="note__tab">file 02 — for her eyes</span>
+          <span class="note__num">02</span>
+          <h3>For caring like you do</h3>
+          <p>You remember the small things — the tiny details even I forget about myself. You ask if I ate, if I slept, if I'm breathing right. That kind of care isn't ordinary. That's love in its quietest form.</p>
+          <div class="note__foot">
+            <div class="barcode" aria-hidden="true"></div>
+            <span class="code">0 73921 50418 · 02</span>
+          </div>
+        </article>
+        <article class="note reveal" data-roman="III" style="--d:.25s">
+          <span class="note__tab">file 03 — do not discard</span>
+          <span class="note__num">03</span>
+          <h3>For… everything</h3>
+          <p>For the laughter, the patience, the way you make ordinary days feel like something worth remembering. For choosing me, again and again. For everything, thank you.</p>
+          <div class="note__foot">
+            <div class="barcode" aria-hidden="true"></div>
+            <span class="code">0 11220 66539 · 03</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== US — PINNED HORIZONTAL ===================== -->
+    <section class="us-sec tex-dark" id="us">
+      <div class="us-pin" id="usPin">
+        <div class="us-head">
+          <p class="eyebrow">chapter two</p>
+          <h2 class="sec-title black">Us, sideways<span class="dot">.</span></h2>
+          <p class="us-hint">keep scrolling — the archive moves with you →</p>
+        </div>
+        <div class="us-track" id="usTrack">
+          <figure class="us-card" data-src="assets/img/us-01.jpg">
+            <div class="us-card__img"><img src="assets/img/us-01.jpg" alt="Us — the day we wandered" loading="lazy" /></div>
+            <figcaption><b>01</b>the day we wandered</figcaption>
+          </figure>
+          <figure class="us-card tall arch" data-src="assets/img/us-02.jpg">
+            <div class="us-card__img"><img src="assets/img/us-02.jpg" alt="Us — your smile" loading="lazy" /></div>
+            <figcaption><b>02</b>your smile, my favourite view</figcaption>
+          </figure>
+          <figure class="us-card" data-src="assets/img/us-03.jpg">
+            <div class="us-card__img"><img src="assets/img/us-03.jpg" alt="Us — in every frame" loading="lazy" /></div>
+            <figcaption><b>03</b>in every frame, you</figcaption>
+          </figure>
+          <figure class="us-card wide" data-src="assets/img/us-04.jpg">
+            <div class="us-card__img"><img src="assets/img/us-04.jpg" alt="Us — the wind and you" loading="lazy" /></div>
+            <figcaption><b>04</b>the wind, and you</figcaption>
+          </figure>
+          <figure class="us-card arch" data-src="assets/img/us-05.jpg">
+            <div class="us-card__img"><img src="assets/img/us-05.jpg" alt="Us — art everywhere" loading="lazy" /></div>
+            <figcaption><b>05</b>art everywhere — and then you</figcaption>
+          </figure>
+          <figure class="us-card wide" data-src="assets/img/us-06.jpg">
+            <div class="us-card__img"><img src="assets/img/us-06.jpg" alt="Us — infinite flowers" loading="lazy" /></div>
+            <figcaption><b>06</b>infinite flowers, one you</figcaption>
+          </figure>
+          <figure class="us-card tall" data-src="assets/img/us-07.jpg">
+            <div class="us-card__img"><img src="assets/img/us-07.jpg" alt="Us — our reflection" loading="lazy" /></div>
+            <figcaption><b>07</b>our reflection, my favourite picture</figcaption>
+          </figure>
+          <figure class="us-card wide arch" data-src="assets/img/us-08.jpg">
+            <div class="us-card__img"><img src="assets/img/us-08.jpg" alt="Us — among the flowers" loading="lazy" /></div>
+            <figcaption><b>08</b>lost among the flowers</figcaption>
+          </figure>
+          <figure class="us-card" data-src="assets/img/us-09.jpg">
+            <div class="us-card__img"><img src="assets/img/us-09.jpg" alt="Us — under the sky" loading="lazy" /></div>
+            <figcaption><b>09</b>under the open sky</figcaption>
+          </figure>
+          <figure class="us-card tall arch" data-src="assets/img/us-10.jpg">
+            <div class="us-card__img"><img src="assets/img/us-10.jpg" alt="Us — upside down" loading="lazy" /></div>
+            <figcaption><b>10</b>upside down, still my world</figcaption>
+          </figure>
+          <figure class="us-card end" data-src="assets/img/us-11.jpg">
+            <div class="us-card__img"><img src="assets/img/us-11.jpg" alt="Us — this face" loading="lazy" /></div>
+            <figcaption><b>11</b>this face. this calm. my whole heart.</figcaption>
+          </figure>
+          <div class="us-end">
+            <p>…and a thousand more days<br />I'd live again, <em>exactly the same.</em></p>
+            <div class="orn-rule" aria-hidden="true"><i></i>✦<i></i></div>
+          </div>
+        </div>
+        <div class="us-progress"><i id="usBar"></i></div>
+      </div>
+    </section>
+
+    <!-- ===================== GALLERY — neoclassical plates ===================== -->
+    <section class="section gallery-sec tex-parch" id="gallery">
+      <header class="sec-head">
+        <p class="eyebrow reveal">chapter three</p>
+        <h2 class="sec-title reveal">Frames of you<span class="dot">.</span></h2>
+        <div class="orn-rule reveal" aria-hidden="true"><i></i>✦<i></i></div>
+        <p class="sec-sub reveal">Museum plates, every one. Hover a photo — tap it to keep it close.</p>
+      </header>
+
+      <div class="gallery" id="galleryGrid">
+        <figure class="ph wide reveal" data-src="assets/img/photo-01.jpg" data-cursor="view" style="--d:.02s">
+          <img src="assets/img/photo-01.jpg" alt="Her in the mountains" loading="lazy" />
+          <figcaption>the day we saw the mountains</figcaption>
+        </figure>
+        <figure class="ph reveal" data-src="assets/img/photo-04.jpg" data-cursor="view" style="--d:.08s">
+          <img src="assets/img/photo-04.jpg" alt="Her pout" loading="lazy" />
+          <figcaption>the famous pout</figcaption>
+        </figure>
+        <figure class="ph reveal" data-src="assets/img/photo-05.jpg" data-cursor="view" style="--d:.14s">
+          <img src="assets/img/photo-05.jpg" alt="Her soft gaze" loading="lazy" />
+          <figcaption>eyes that calm me</figcaption>
+        </figure>
+        <figure class="ph wide reveal" data-src="assets/img/photo-02.jpg" data-cursor="view" style="--d:.2s">
+          <img src="assets/img/photo-02.jpg" alt="Her close-up" loading="lazy" />
+          <figcaption>close enough to breathe</figcaption>
+        </figure>
+        <figure class="ph reveal" data-src="assets/img/photo-06.jpg" data-cursor="view" style="--d:.26s">
+          <img src="assets/img/photo-06.jpg" alt="Her with her hand on her cheek" loading="lazy" />
+          <figcaption>my favourite pose</figcaption>
+        </figure>
+        <figure class="ph reveal" data-src="assets/img/photo-03.jpg" data-cursor="view" style="--d:.32s">
+          <img src="assets/img/photo-03.jpg" alt="Her smiling at the camera" loading="lazy" />
+          <figcaption>the first picture I saved</figcaption>
+        </figure>
+        <figure class="ph reveal" data-src="assets/img/photo-07.jpg" data-cursor="view" style="--d:.38s">
+          <img src="assets/img/photo-07.jpg" alt="Her laughing" loading="lazy" />
+          <figcaption>my favourite sound, in a picture</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== THE GALLERY — living paintings ===================== -->
+    <section class="section portraits-sec tex-dark" id="portraits">
+      <header class="sec-head">
+        <p class="eyebrow reveal">chapter three &amp; a half</p>
+        <h2 class="sec-title black reveal">The gallery<span class="dot">.</span></h2>
+        <div class="orn-rule reveal" aria-hidden="true"><i></i>✦<i></i></div>
+        <p class="sec-sub reveal">Not photographs — paintings. Each frame is a canvas, still breathing.</p>
+      </header>
+
+      <div class="portraits">
+
+        <figure class="portrait reveal" data-style="muse" data-cursor="view" style="--d:.05s">
+          <div class="portrait__frame">
+            <span class="portrait__sun" aria-hidden="true"></span>
+            <span class="portrait__brush" aria-hidden="true"></span>
+            <span class="portrait__arch" aria-hidden="true"></span>
+            <div class="portrait__img"><img src="assets/img/photo-03.jpg" alt="Her — the muse" loading="lazy" /></div>
+            <span class="portrait__grid" aria-hidden="true"></span>
+            <span class="portrait__glow" aria-hidden="true"></span>
+          </div>
+          <figcaption>
+            <span class="portrait__no">no. i</span>
+            <b>La Muse</b>
+            <em>she who calms the noise</em>
+          </figcaption>
+        </figure>
+
+        <figure class="portrait reveal" data-style="odyssey" data-cursor="view" style="--d:.15s">
+          <div class="portrait__frame">
+            <span class="portrait__sun" aria-hidden="true"></span>
+            <span class="portrait__brush" aria-hidden="true"></span>
+            <span class="portrait__arch" aria-hidden="true"></span>
+            <div class="portrait__img"><img src="assets/img/photo-01.jpg" alt="Her — the voyager" loading="lazy" /></div>
+            <span class="portrait__grid" aria-hidden="true"></span>
+            <span class="portrait__glow" aria-hidden="true"></span>
+          </div>
+          <figcaption>
+            <span class="portrait__no">no. ii</span>
+            <b>Odyssey</b>
+            <em>the day we saw the mountains</em>
+          </figcaption>
+        </figure>
+
+        <figure class="portrait reveal" data-style="roses" data-cursor="view" style="--d:.25s">
+          <div class="portrait__frame">
+            <span class="portrait__sun" aria-hidden="true"></span>
+            <span class="portrait__brush" aria-hidden="true"></span>
+            <span class="portrait__arch" aria-hidden="true"></span>
+            <div class="portrait__img"><img src="assets/img/photo-07.jpg" alt="Her — digital roses" loading="lazy" /></div>
+            <span class="portrait__grid" aria-hidden="true"></span>
+            <span class="portrait__glow" aria-hidden="true"></span>
+          </div>
+          <figcaption>
+            <span class="portrait__no">no. iii</span>
+            <b>Digital Roses</b>
+            <em>a laugh that never wilts</em>
+          </figcaption>
+        </figure>
+
+        <figure class="portrait reveal" data-style="artist" data-cursor="view" style="--d:.35s">
+          <div class="portrait__frame">
+            <span class="portrait__sun" aria-hidden="true"></span>
+            <span class="portrait__brush" aria-hidden="true"></span>
+            <span class="portrait__arch" aria-hidden="true"></span>
+            <div class="portrait__img"><img src="assets/img/photo-05.jpg" alt="Her — the artist" loading="lazy" /></div>
+            <span class="portrait__grid" aria-hidden="true"></span>
+            <span class="portrait__glow" aria-hidden="true"></span>
+          </div>
+          <figcaption>
+            <span class="portrait__no">no. iv</span>
+            <b>The Artist</b>
+            <em>art is you — art is us</em>
+          </figcaption>
+        </figure>
+
+        <figure class="portrait reveal" data-style="renaissance" data-cursor="view" style="--d:.45s">
+          <div class="portrait__frame">
+            <span class="portrait__sun" aria-hidden="true"></span>
+            <span class="portrait__brush" aria-hidden="true"></span>
+            <span class="portrait__arch" aria-hidden="true"></span>
+            <div class="portrait__img"><img src="assets/img/photo-04.jpg" alt="Her — renaissance" loading="lazy" /></div>
+            <span class="portrait__grid" aria-hidden="true"></span>
+            <span class="portrait__glow" aria-hidden="true"></span>
+          </div>
+          <figcaption>
+            <span class="portrait__no">no. v</span>
+            <b>Renaissance</b>
+            <em>the famous pout, framed forever</em>
+          </figcaption>
+        </figure>
+
+        <figure class="portrait reveal" data-style="goddess" data-cursor="view" style="--d:.55s">
+          <div class="portrait__frame">
+            <span class="portrait__sun" aria-hidden="true"></span>
+            <span class="portrait__brush" aria-hidden="true"></span>
+            <span class="portrait__arch" aria-hidden="true"></span>
+            <div class="portrait__img"><img src="assets/img/photo-02.jpg" alt="Her — the goddess" loading="lazy" /></div>
+            <span class="portrait__grid" aria-hidden="true"></span>
+            <span class="portrait__glow" aria-hidden="true"></span>
+          </div>
+          <figcaption>
+            <span class="portrait__no">no. vi</span>
+            <b>The Goddess</b>
+            <em>close enough to breathe</em>
+          </figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- ===================== VIDEOS — moving plates ===================== -->
+    <section class="section videos-sec tex-dark" id="moments">
+      <header class="sec-head">
+        <p class="eyebrow reveal">chapter four</p>
+        <h2 class="sec-title black reveal">Moments that move<span class="dot">.</span></h2>
+        <div class="orn-rule reveal" aria-hidden="true"><i></i>✦<i></i></div>
+        <p class="sec-sub reveal">Some memories refuse to stay still. Tap any plate to unmute.</p>
+      </header>
+
+      <div class="videos">
+        <figure class="vid-card reveal" style="--d:.05s">
+          <span class="vid-card__tag">moving plate no. 01</span>
+          <video src="assets/video/clip-01.mp4" muted loop playsinline preload="metadata"></video>
+          <figcaption><span>01</span> you, being you</figcaption>
+          <button class="vid-sound" aria-label="Toggle sound">sound on</button>
+        </figure>
+        <figure class="vid-card reveal" style="--d:.12s">
+          <span class="vid-card__tag">moving plate no. 02</span>
+          <video src="assets/video/clip-02.mp4" muted loop playsinline preload="metadata"></video>
+          <figcaption><span>02</span> a night I replay</figcaption>
+          <button class="vid-sound" aria-label="Toggle sound">sound on</button>
+        </figure>
+        <figure class="vid-card reveal" style="--d:.19s">
+          <span class="vid-card__tag">moving plate no. 03</span>
+          <video src="assets/video/clip-03.mp4" muted loop playsinline preload="metadata"></video>
+          <figcaption><span>03</span> pure chaos, pure joy</figcaption>
+          <button class="vid-sound" aria-label="Toggle sound">sound on</button>
+        </figure>
+        <figure class="vid-card reveal" style="--d:.26s">
+          <span class="vid-card__tag">moving plate no. 04</span>
+          <video src="assets/video/clip-04.mp4" muted loop playsinline preload="metadata"></video>
+          <figcaption><span>04</span> proof that you laugh at me</figcaption>
+          <button class="vid-sound" aria-label="Toggle sound">sound on</button>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== KINETIC TYPE ===================== -->
+    <section class="kinetic tex-parch" id="kinetic">
+      <span class="kinetic__wm" aria-hidden="true">mmxxvi</span>
+      <p class="kinetic__text" id="kineticText">
+        In my darkest days you became the light I didn't know I was allowed to hold. You didn't fix me — you just stayed, until I could see myself the way you always did.
+      </p>
+    </section>
+
+    <!-- ===================== LETTERS — wax-sealed envelopes ===================== -->
+    <section class="section letters-sec tex-dark" id="letters">
+      <header class="sec-head">
+        <p class="eyebrow reveal">chapter five</p>
+        <h2 class="sec-title black reveal">Things I owe you<span class="dot">.</span></h2>
+        <div class="orn-rule reveal" aria-hidden="true"><i></i>✦<i></i></div>
+        <p class="sec-sub reveal">Break each seal. There's something written behind it.</p>
+      </header>
+
+      <div class="letters">
+        <div class="letter reveal" style="--d:.05s" tabindex="0" data-cursor="flip">
+          <div class="letter__in">
+            <div class="face front">
+              <span class="no">I</span>
+              <span class="seal" aria-hidden="true"><span>I</span></span>
+              <p>tap to break the seal</p>
+            </div>
+            <div class="face back">
+              <p>Thank you for staying on the phone when I couldn't sleep, and pretending you weren't tired too.</p>
+              <span class="sign">— always, me</span>
+            </div>
+          </div>
+        </div>
+        <div class="letter reveal" style="--d:.12s" tabindex="0" data-cursor="flip">
+          <div class="letter__in">
+            <div class="face front">
+              <span class="no">II</span>
+              <span class="seal" aria-hidden="true"><span>II</span></span>
+              <p>tap to break the seal</p>
+            </div>
+            <div class="face back">
+              <p>Thank you for believing in me on the days I had nothing left to believe with.</p>
+              <span class="sign">— always, me</span>
+            </div>
+          </div>
+        </div>
+        <div class="letter reveal" style="--d:.19s" tabindex="0" data-cursor="flip">
+          <div class="letter__in">
+            <div class="face front">
+              <span class="no">III</span>
+              <span class="seal" aria-hidden="true"><span>III</span></span>
+              <p>tap to break the seal</p>
+            </div>
+            <div class="face back">
+              <p>Thank you for caring in the small ways — the ones nobody claps for, but I notice every one.</p>
+              <span class="sign">— always, me</span>
+            </div>
+          </div>
+        </div>
+        <div class="letter reveal" style="--d:.26s" tabindex="0" data-cursor="flip">
+          <div class="letter__in">
+            <div class="face front">
+              <span class="no">IV</span>
+              <span class="seal" aria-hidden="true"><span>IV</span></span>
+              <p>tap to break the seal</p>
+            </div>
+            <div class="face back">
+              <p>Thank you for being the calmest part of my loudest days. I'm yours, on purpose.</p>
+              <span class="sign">— always, me</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== QUOTE — engraved plaque ===================== -->
+    <section class="quote-sec tex-parch" id="quote">
+      <blockquote class="plaque reveal">
+        <span class="plaque__star" aria-hidden="true">✦</span>
+        <p>“I don't need the whole world.<br />I just need <em>you</em> — exactly as you are.”</p>
+        <cite>— me, always</cite>
+        <span class="plaque__star bot" aria-hidden="true">✦</span>
+      </blockquote>
+    </section>
+
+    <!-- ===================== FINALE — gothic shrine ===================== -->
+    <section class="finale tex-dark" id="finale">
+      <div class="finale__rings" aria-hidden="true"><span></span><span></span><span></span><i>✦</i></div>
+      <div class="finale__content">
+        <p class="eyebrow reveal">the end of the scroll, not the story</p>
+        <h2 class="finale__title reveal">Sirf<span>&nbsp;tum.</span></h2>
+        <div class="orn-rule reveal" aria-hidden="true"><i></i>✦<i></i></div>
+        <p class="finale__text reveal">
+          Through the tough times, the ordinary days, the loud ones and the quiet ones —
+          thank you for being the person I never had to ask to stay.
+        </p>
+
+        <button class="hold-btn reveal" id="holdBtn" data-cursor="hold">
+          <svg class="hold-btn__ring" viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="56" class="bg"></circle>
+            <circle cx="60" cy="60" r="56" class="fg" id="holdArc"></circle>
+          </svg>
+          <span class="seal big" aria-hidden="true"><span>❤</span></span>
+          <span class="hold-btn__label">press &amp; hold — don't let go</span>
+        </button>
+
+        <p class="hold-msg" id="holdMsg">and I'll keep holding you back — today, tomorrow, <em>sirf tum.</em></p>
+
+        <p class="finale__sign reveal">always yours ❤</p>
+        <button class="btn-enter ghost magnetic reveal" id="replayBtn">↑ read it all again</button>
+        <p class="finale__credit reveal">♪ “Sirf Tum” — Darshan Raval, Youngveer, Mir Desai</p>
+
+        <div class="finale__foot reveal" aria-hidden="true">
+          <div class="barcode"></div>
+          <span class="code">mmxxvi · sealed with love · no. 001 · sirf tum</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== LIGHTBOX ===================== -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox__close" id="lbClose" aria-label="Close">✕</button>
+    <figure>
+      <img src="" alt="" id="lbImg" />
+      <figcaption id="lbCap"></figcaption>
+    </figure>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
